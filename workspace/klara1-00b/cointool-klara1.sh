@@ -19,7 +19,8 @@ cd $HOME
 pid=$$
 mail_cmd="$HOME/bin/klara1_OpeningMessage.sh"
 mail_cmdopt="-v"
-mail_addr="hohno46466+klara1bot@gmail.com"
+# mail_addr="hohno46466+klara1bot@gmail.com"
+mail_addr="monkteam@ml.kanazawa-u.ac.jp"
 
 randnum=$(bash -c 'echo $RANDOM')
 dotcoin=.coinX-$(hostname)

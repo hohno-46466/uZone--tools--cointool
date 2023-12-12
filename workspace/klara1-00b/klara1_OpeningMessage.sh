@@ -2,7 +2,8 @@
 
 MAIL_DEBUG=
 MAIL_VERBOSE=
-TO_ADDR=hohno.46466+klara1Bot@gmail.com
+# TO_ADDR="hohno.46466+klara1bot@gmail.com"
+TO_ADDR="monkteam@ml.kanazawa-u.ac.jp"
 MAIL_HEADER_FILE="$HOME/workspace/msmtp/klara1_mail_header.sample"
 
 if [ ! -f $MAIL_HEADER_FILE ]; then
