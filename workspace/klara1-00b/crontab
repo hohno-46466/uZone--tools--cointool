@@ -1,0 +1,4 @@
+@reboot (sleep 60; /home/pi/bin/cointool-klara1.sh -f 2>&1 >> /tmp/coinlogOnBoot.txt)
+1,11,21,31,41,51 * * * * /home/pi/bin/cointool-klara1.sh 2>&1 >> /tmp/coinlog1.txt
+4,14,24,34,44,54 * * * * /home/pi/bin/cointool-klara1.sh 2>&1 >> /tmp/coinlog4.txt
+7,17,27,37,47,57 * * * * /home/pi/bin/cointool-klara1.sh 2>&1 >> /tmp/coinlog7.txt
