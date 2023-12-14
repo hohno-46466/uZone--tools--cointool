@@ -20,7 +20,8 @@ pid=$$
 mail_cmd="$HOME/bin/klara1_OpeningMessage.sh"
 mail_cmdopt="-v"
 # mail_addr="hohno46466+klara1bot@gmail.com"
-mail_addr="monkteam@ml.kanazawa-u.ac.jp"
+# mail_addr="monkteam@ml.kanazawa-u.ac.jp"
+mail_addr="monkteam-bot@ml.kanazawa-u.ac.jp"
 
 randnum=$(bash -c 'echo $RANDOM')
 dotcoin=.coinX-$(hostname)
@@ -72,9 +73,14 @@ else
 
 fi
 
+utcdate=$(date -u)
+
 (echo; date; echo) >> $locallog
-echo ssh -i $HOME/.ssh/id_rsa-dotcoin -T -R $remoteport:localhost:22 $remoteuser@$remotehost "(date; /bin/mv ${dotcoin} ${dotcoin}.$remoteport; sleep $maxtime; date)" 2>&1 | tee -a $locallog | $mail_cmd $mail_cmdopt $mail_addr
-ssh -i $HOME/.ssh/id_rsa-dotcoin -T -R $remoteport:localhost:22 $remoteuser@$remotehost "(date; /bin/mv ${dotcoin} ${dotcoin}.$remoteport; sleep $maxtime; date)" 2>&1 >> $locallog
+
+echo ssh -i $HOME/.ssh/id_rsa-dotcoin -T -R $remoteport:localhost:22 $remoteuser@$remotehost "(date; echo '#' $utcdate > ${dotcoin}.$remoteport; /bin/mv ${dotcoin} ${dotcoin}.$remoteport; sleep $maxtime; date)" 3>&1 | tee -a $locallog | $mail_cmd $mail_cmdopt $mail_addr
+
+ssh -i $HOME/.ssh/id_rsa-dotcoin -T -R $remoteport:localhost:22 $remoteuser@$remotehost "(date; echo '#' $utcdate > ${dotcoin}.$remoteport; /bin/mv ${dotcoin} ${dotcoin}.$remoteport; sleep $maxtime; date)" 2>&1 >> $locallog
+
 (echo; date; echo; echo "--------") >> $locallog
 
 exit 0

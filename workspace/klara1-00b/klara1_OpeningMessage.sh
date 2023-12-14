@@ -1,9 +1,12 @@
 #!/bin/sh
 
+# Last update: Fri 15 Dec 07:09:23 JST 2023 by @hohno_at_kuimc
+
 MAIL_DEBUG=
 MAIL_VERBOSE=
 # TO_ADDR="hohno.46466+klara1bot@gmail.com"
-TO_ADDR="monkteam@ml.kanazawa-u.ac.jp"
+# TO_ADDR="monkteam@ml.kanazawa-u.ac.jp"
+TO_ADDR="monkteam-bot@ml.kanazawa-u.ac.jp"
 MAIL_HEADER_FILE="$HOME/workspace/msmtp/klara1_mail_header.sample"
 
 if [ ! -f $MAIL_HEADER_FILE ]; then
@@ -44,19 +47,20 @@ This is a message from user $USER on $(hostname) on $(/bin/date)
 これは、$(/bin/date) 時点での $(hostname) 上のユーザ $USER からのメッセージです。
 
 (1) IP アドレス
-　$(hostname -I)
+  $(hostname -I)
 
 (2) 稼働状況
-　$(uptime)
+  $(uptime)
 
 (3) SSH の状況
-　$(ps axw | grep ssh | egrep -v 'ssh-|grep ssh')
+$(ps axw | grep ssh | egrep -v 'ssh-|grep ssh' | sed 's/^/  /')
 
 (4) SSH トンネルの状況
-　下記の「参考情報」を参照のこと
+  下記の「参考情報」を参照のこと（ヒントあり）
 
 (5) Tips（トンネル掘削方法）
-　例：$ ssh -A -o IdentitiesOnly=yes -p NNNNN pi@localhost
+  例：$ ssh -A -p トンネル用ポート番号 pi@localhost
+  例：$ ssh -A -o IdentitiesOnly=yes -i 公開鍵認証用の鍵 -p トンネル用ポート番号 pi@localhost
 
 Please ignore this email. But if you find any problems, let me know. (hohno)
 とりあえず無視してください。でも何かおかしな点があれば遠慮なく指摘してください。(hohno)
